@@ -14,7 +14,7 @@ from core.security import decode_access_token
 
 
 oauth2_scheme = OAuth2PasswordBearer(
-    tokenUrl="/auth/login"
+    tokenUrl="auth/login"
 )
 
 
