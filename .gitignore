@@ -18,3 +18,8 @@ job_application_tracker.db
 
 .coverage
 htmlcov/
+
+.DS_Store
+Thumbs.db
+
+
