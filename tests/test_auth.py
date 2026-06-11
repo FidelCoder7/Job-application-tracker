@@ -21,6 +21,16 @@ def test_register_user(client):
 
 # Login Test
 def test_login_user(client):
+    # Register first so the user exists in this test's clean DB
+    client.post(
+        "/auth/register",
+        json={
+            "username": "testuser",
+            "email": "test1@example.com",
+            "password": "password123"
+        }
+    )
+
     response = client.post(
         "/auth/login",
         data={
@@ -31,9 +41,7 @@ def test_login_user(client):
 
     assert response.status_code == 200
 
-    token_data = response.json()
-
-    assert "access_token" in token_data
+    assert "access_token" in response.json()
 
 # Invalid Login Test
 def test_invalid_login(client):
