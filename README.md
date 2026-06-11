@@ -56,7 +56,7 @@ GET /dashboard/stats
 
 ## Installation
 
-git clone https://github.com/yourusername/job-application-tracker.git
+git clone https://github.com/FidelCoder7/Job-application-tracker.git
 
 cd job-application-tracker
 
@@ -84,3 +84,6 @@ pytest -v
 - Email Notifications
 - Advanced Analytics
 
+## API Documentation
+
+![Swagger Docs](screenshots/swagger-home.png)
