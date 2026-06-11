@@ -10,8 +10,10 @@ venv/
 
 .pytest_cache/
 
+
 expense_tracker.db
 job_application_tracker.db
+*.db
 
 .vscode/
 .idea/
