@@ -1,5 +1,7 @@
 # Job Application Tracker
 
+![CI](https://github.com/FidelCoder7/Job-application-tracker/actions/workflows/ci.yml/badge.svg)
+
 A production-style FastAPI backend for managing job applications, tracking application status, and analyzing job search performance.
 
 Built with FastAPI, SQLAlchemy, JWT Authentication, Pytest, and GitHub Actions.
