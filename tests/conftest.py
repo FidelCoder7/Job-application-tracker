@@ -29,8 +29,6 @@ TestingSessionLocal = sessionmaker(
     bind=engine
 )
 
-Base.metadata.create_all(bind=engine)
-
 
 # Override Dependency
 def override_get_db():
@@ -51,4 +49,29 @@ app.dependency_overrides[
 # Test Client Fixture
 @pytest.fixture
 def client():
+     # Drop and recreate all tables before each test 
+    Base.metadata.drop_all(bind=engine)
+    Base.metadata.create_all(bind=engine)
     return TestClient(app)
+
+
+
+# Reusable fixture: gives you an authenticated token
+@pytest.fixture
+def auth_token(client):
+    client.post(
+        "/auth/register",
+        json={
+            "username": "testuser",
+            "email": "test1@example.com",
+            "password": "password123"
+        }
+    )
+    response = client.post(
+        "/auth/login",
+        data={
+            "username": "test1@example.com",
+            "password": "password123"
+        }
+    )
+    return response.json()["access_token"]

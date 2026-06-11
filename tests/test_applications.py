@@ -1,27 +1,11 @@
-# Helper Function
-def get_token(client):
-    response = client.post(
-        "/auth/login",
-        data={
-            "username": "test1@example.com",
-            "password": "password123"
-        }
-    )
-
-    return (
-        response.json()["access_token"]
-    )
-
-
 # Create Application
-def test_create_application(client):
-    token = get_token(client)
+def test_create_application(client, auth_token):
 
     response = client.post(
         "/applications",
         headers={
             "Authorization":
-            f"Bearer {token}"
+            f"Bearer {auth_token}"
         },
         json={
             "company_name": "Google",
@@ -33,14 +17,13 @@ def test_create_application(client):
 
 
 # Get Applications
-def test_get_applications(client):
-    token = get_token(client)
+def test_get_applications(client, auth_token):
 
     response = client.get(
         "/applications",
         headers={
             "Authorization":
-            f"Bearer {token}"
+            f"Bearer {auth_token}"
         }
     )
 

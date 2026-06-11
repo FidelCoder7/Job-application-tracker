@@ -1,17 +1,3 @@
-def get_token(client):
-    response = client.post(
-        "/auth/login",
-        data={
-            "username": "test1@example.com",
-            "password": "password123"
-        }
-    )
-
-    return (
-        response.json()["access_token"]
-    )
-
-
 # Dashboard Protected
 def test_dashboard_requires_auth(
     client
@@ -25,23 +11,18 @@ def test_dashboard_requires_auth(
 
 # Dashboard Works
 def test_dashboard_stats(
-    client
+    client, auth_token
 ):
-    token = get_token(client)
 
     response = client.get(
         "/dashboard/stats",
         headers={
             "Authorization":
-            f"Bearer {token}"
+            f"Bearer {auth_token}"
         }
     )
 
     assert response.status_code == 200
 
-    data = response.json()
-
-    assert (
-        "total_applications"
-        in data
-    )
+    assert "total_applications" in response.json()
+    
